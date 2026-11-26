@@ -16,26 +16,26 @@ def multiply_matrix(A, B):
     colB = len(B[0])
 
     if colA != rowB:
-        print("Multiplication not possible")
+        print("Multiplication not possible ")
         return
 
     result = []
     for i in range(rowA):
         row = []
         for j in range(colB):
-            total = 0
+            sum = 0
             for k in range(colA):
-                total += A[i][k] * B[k][j]
-            row.append(total)
+                sum += A[i][k] * B[k][j]
+            row.append(sum)
         result.append(row)
     return result
 
 
 def scalar_multip(matrix, scalar):
     result = []
-    for row in matrix:
+    for i in matrix:
         new_row = []
-        for x in row:
+        for x in i:
             value = scalar * x
             new_row.append(value)
         result.append(new_row)
@@ -46,5 +46,9 @@ A = [[1, 2], [3, 4]]
 B = [[5, 6], [8, 9]]
 scalar = 2
 
-print("Matrix A:", A)
-print("Matrix B:", B)
+print("matrix A : ", A)
+print("matrix B : ", B)
+print("Addition : ", add_matrix(A, B))
+print("Addition : ", add_matrix(A, B))
+print("Multiplication : ", multiply_matrix(A, B))
+print("scalar : ", scalar_multip(A, scalar))
