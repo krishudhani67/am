@@ -1,0 +1,37 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import binom, norm
+
+# Binomial distribution
+n, p = 10, 0.4
+k = np.arange(n + 1)
+pmf = binom.pmf(k, n, p)
+
+for successes, prob in zip(k, pmf):
+    print(f"P(X = {successes}) = {prob:.4f}")
+
+sample = np.random.binomial(n, p, 10000)
+print("Mean (theory, simulated):", n*p, round(sample.mean(), 4))
+print("Variance (theory, simulated):", n*p*(1-p), round(sample.var(), 4))
+
+# Standard normal distribution
+x = np.linspace(-4, 4, 401)
+pdf = norm.pdf(x)
+print("P(-1 < X < 1) =", round(norm.cdf(1) - norm.cdf(-1), 4))
+
+# Plot side by side
+plt.subplot(1, 2, 1)
+plt.bar(k, pmf)
+plt.title("Binomial Distribution")
+plt.xlabel("Successes")
+plt.ylabel("Probability")
+
+plt.subplot(1, 2, 2)
+plt.plot(x, pdf)
+plt.fill_between(x, pdf, where=(abs(x) <= 1), alpha=0.3)
+plt.title("Normal Distribution")
+plt.xlabel("x")
+plt.ylabel("Density")
+
+plt.tight_layout()
+plt.show()
